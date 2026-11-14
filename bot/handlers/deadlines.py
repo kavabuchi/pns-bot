@@ -3,6 +3,6 @@ from aiogram import Router
 
 router = Router()
 
-# TODO: достать данные пользователя из storage
-# TODO: через pns.client получить страницу, через pns.parser — список дедлайнов
-# TODO: отсортировать по дате и отформатировать (см. bot/texts.py)
+# TODO: взять ссылку пользователя (сначала из config.PNS_CALENDAR_URL, потом из storage)
+# TODO: pns.client.fetch_calendar -> pns.parser.parse_deadlines
+# TODO: только будущие, по дате, отформатировать (см. bot/texts.py)

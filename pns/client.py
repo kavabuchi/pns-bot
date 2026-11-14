@@ -1,33 +1,20 @@
-"""HTTP-клиент для ПНС: авторизация и получение HTML нужных страниц.
+"""Скачивание календаря ПНС (.ics) по ссылке экспорта Moodle.
+
+Логин не нужен: в ссылке уже есть authtoken.
 
 Подсказки:
-  - aiohttp уже стоит вместе с aiogram, можно использовать aiohttp.ClientSession
-  - сессия хранит cookie после логина — переиспользуй её, а не логинься на каждый запрос
-  - если сайт рисует данные через JavaScript (в HTML-ответе пусто) —
-    поищи в DevTools -> Network JSON-запрос (XHR/fetch), часто проще брать данные оттуда
+  - aiohttp уже стоит вместе с aiogram: aiohttp.ClientSession
+  - поставь таймаут: aiohttp.ClientTimeout(total=...)
+  - при неверном токене Moodle вернёт не календарь, а страницу с ошибкой —
+    проверь статус и/или что текст начинается с BEGIN:VCALENDAR
 """
 
 
-class PnsAuthError(Exception):
-    """Не удалось войти (неверный пароль, протухла сессия и т.п.)."""
+class PnsLinkError(Exception):
+    """Ссылка не работает: неверный/устаревший токен, сайт вернул не календарь."""
 
 
-class PnsClient:
-    def __init__(self, base_url: str) -> None:
-        self.base_url = base_url
-        # TODO: создать/хранить сессию
-
-    async def login(self, username: str, password: str) -> None:
-        """Войти в ПНС. При неудаче — raise PnsAuthError."""
-        # TODO
-        raise NotImplementedError
-
-    async def fetch_deadlines_page(self) -> str:
-        """Вернуть HTML (или JSON-текст) страницы, где перечислены задания."""
-        # TODO
-        raise NotImplementedError
-
-    async def close(self) -> None:
-        """Закрыть сессию."""
-        # TODO
-        raise NotImplementedError
+async def fetch_calendar(url: str) -> str:
+    """Скачать .ics по ссылке и вернуть его текст. При проблеме — raise PnsLinkError."""
+    # TODO
+    raise NotImplementedError

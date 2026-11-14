@@ -1,15 +1,21 @@
 """Тесты парсера. Запуск: python -m pytest
 
-TODO: сохрани страницу ПНС с заданиями (Ctrl+S в браузере) в tests/fixtures/deadlines.html
-      (убери оттуда личные данные!) и проверь, что parse_deadlines вытаскивает нужное.
+TODO: скачай свой календарь по ссылке и сохрани как tests/fixtures/calendar.ics
+      (файл в .gitignore — там личные данные).
 """
 from pathlib import Path
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
 
+def test_is_deadline():
+    # assert is_deadline("Філософська антропологія завершується") is True
+    # assert is_deadline("Відвідуваність (Група ...)") is False
+    pass
+
+
 def test_parse_deadlines():
-    # html = (FIXTURES / "deadlines.html").read_text(encoding="utf-8")
-    # deadlines = parse_deadlines(html)
+    # text = (FIXTURES / "calendar.ics").read_text(encoding="utf-8")
+    # deadlines = parse_deadlines(text)
     # assert len(deadlines) == ...
     pass

@@ -1,13 +1,12 @@
 """Обёртка над Redis, чтобы остальной код не знал про ключи и команды Redis.
 
 Что нужно хранить (идея ключей):
-  user:{chat_id}                    -> данные для входа в ПНС
+  user:{chat_id}                    -> ссылка на календарь пользователя
   users                             -> set всех chat_id (чтобы планировщик знал, кого проверять)
   notified:{chat_id}:{deadline_id}  -> отметка «уже напоминали за N часов»
 
 TODO: используй redis.asyncio (асинхронный клиент), раз бот на asyncio.
 TODO: подумай о TTL для notified:* — после дедлайна они больше не нужны.
-TODO: пароль в открытом виде в Redis — плохо. Почитай про шифрование (cryptography.fernet).
 """
 
 
@@ -16,10 +15,10 @@ class Repository:
         # TODO
         raise NotImplementedError
 
-    async def save_user(self, chat_id: int, username: str, password: str) -> None:
+    async def save_user(self, chat_id: int, calendar_url: str) -> None:
         raise NotImplementedError
 
-    async def get_user(self, chat_id: int) -> dict | None:
+    async def get_calendar_url(self, chat_id: int) -> str | None:
         raise NotImplementedError
 
     async def delete_user(self, chat_id: int) -> None:

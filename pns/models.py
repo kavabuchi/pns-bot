@@ -5,10 +5,8 @@ from datetime import datetime
 
 @dataclass
 class Deadline:
-    # TODO: посмотри, какие поля реально есть на сайте, и поправь список
-    id: str            # уникальный id работы (из ссылки/атрибута) — чтобы не слать дубли
-    subject: str       # предмет
-    title: str         # название работы
-    due_at: datetime   # срок сдачи
-    url: str | None = None
-    submitted: bool = False
+    # TODO: сверь с полями в .ics и поправь, если нужно
+    id: str            # UID события — уникальный, чтобы не слать дубли
+    subject: str       # CATEGORIES — предмет
+    title: str         # SUMMARY — название
+    due_at: datetime   # DTSTART — срок (уже в киевском времени)
